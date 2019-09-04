@@ -2,6 +2,14 @@
 
 <%= form_for(:session, url: login_path) do |f| %>
 
+  <div>
+    <% unless flash.empty? %>
+      <% flash.each do |name, msg| -%>
+        <%= msg %>
+      <% end %>
+    <% end %>
+  </div>
+
   <%= f.label :email %>
   <%= f.email_field :email %>
   <br />
@@ -10,3 +18,5 @@
 
   <%= f.submit "Sign In" %>
 <% end %>
+
+<%= link_to "Back to homepage", root_url %>

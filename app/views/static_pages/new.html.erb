@@ -1,0 +1,8 @@
+<h1>Home Page</h1>
+
+<% if current_user.nil? %>
+  <h3>No one has logged in</h3>
+  <%= link_to "You should log in", login_path %>
+<% else %>
+  <h3><%= current_user.name %> has logged in</h3>
+<% end %>

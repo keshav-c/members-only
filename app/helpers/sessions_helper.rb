@@ -1,2 +1,17 @@
 module SessionsHelper
+  def log_in(user)
+    token = SecureRandom.urlsafe_base64
+    cookies.permanent[:remember_token] = token
+    user.update_attribute(:remember_digest, digest(token))
+  end
+
+  def digest(token)
+    Digest::SHA1.hexdigest(token)
+  end
+
+  def current_user
+    token = cookies[:remember_token]
+    return nil if token.nil?
+    @current_user ||= User.find_by(remember_digest: digest(token))
+  end
 end
