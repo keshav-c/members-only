@@ -2,13 +2,7 @@
 
 <%= form_for(:session, url: login_path) do |f| %>
 
-  <div>
-    <% unless flash.empty? %>
-      <% flash.each do |name, msg| -%>
-        <%= msg %>
-      <% end %>
-    <% end %>
-  </div>
+  <%= render 'layouts/flash' %>
 
   <%= f.label :email %>
   <%= f.email_field :email %>

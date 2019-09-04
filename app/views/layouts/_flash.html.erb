@@ -1,0 +1,7 @@
+<div>
+  <% unless flash.empty? %>
+    <% flash.each do |name, msg| -%>
+      <%= msg %>
+    <% end %>
+  <% end %>
+</div>

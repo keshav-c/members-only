@@ -1,0 +1,11 @@
+<h1>A new post</h1>
+
+<%= form_for(@post) do |f| %>
+
+  <%= render 'layouts/flash' %>
+
+  <%= f.text_area :content, size: "60x12" %>
+  <br>
+  <%= f.submit "Post" %>
+
+<% end %>

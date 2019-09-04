@@ -19,4 +19,11 @@ module SessionsHelper
     cookies.delete(:remember_token)
     @current_user = nil
   end
+
+  def require_login
+    if current_user.nil?
+      flash[:error] = "You must be logged in before posting"
+      redirect_to login_url
+    end
+  end
 end
