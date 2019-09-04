@@ -14,4 +14,9 @@ module SessionsHelper
     return nil if token.nil?
     @current_user ||= User.find_by(remember_digest: digest(token))
   end
+
+  def log_out
+    cookies.delete(:remember_token)
+    @current_user = nil
+  end
 end

@@ -5,4 +5,5 @@
   <%= link_to "You should log in", login_path %>
 <% else %>
   <h3><%= current_user.name %> has logged in</h3>
+  <%= link_to "Sign Out", logout_path, method: :delete %>
 <% end %>
