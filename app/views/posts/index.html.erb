@@ -1,0 +1,13 @@
+<h1>All posts</h1>
+
+<ul>
+  <% @posts.each do |p| %>
+    <li>
+      <% if current_user.nil? %>
+        <p><strong>Anonymous:</strong> <%= p.content %></p>
+      <% else %>
+        <p><strong><%= p.user.name %> :</strong> <%= p.content %></p>
+      <% end%>
+    </li>
+  <% end %>
+</ul>
