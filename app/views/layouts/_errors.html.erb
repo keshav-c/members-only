@@ -1,0 +1,9 @@
+<ul>
+  <% unless @user.errors.empty? %>
+    <% @user.errors.full_messages.each do |msg| -%>
+      <li>
+        <%= msg %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

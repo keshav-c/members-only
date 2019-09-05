@@ -1,5 +1,11 @@
 <h1>All posts</h1>
 
+<br>
+<%= link_to "Create new post", new_post_path %>
+/
+<%= link_to "log out", logout_path, method: :delete %>
+
+<br>
 <ul>
   <% @posts.each do |p| %>
     <li>

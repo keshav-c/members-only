@@ -1,9 +1,11 @@
 <h1>Home Page</h1>
-
+<ul>
 <% if current_user.nil? %>
-  <h3>No one has logged in</h3>
-  <%= link_to "You should log in", login_path %>
+  <li><%= link_to "log in", login_path %></li>
+  <li><%= link_to "Sign up", new_user_path %></li>
 <% else %>
   <h3><%= current_user.name %> has logged in</h3>
-  <%= link_to "Sign Out", logout_path, method: :delete %>
+  <li><%= link_to "Sign Out", logout_path, method: :delete %></li>
 <% end %>
+  <li><%= link_to "Posts", posts_path %></li>
+</ul>
