@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Helper methods for session handling
 module SessionsHelper
   def log_in(user)
     token = SecureRandom.urlsafe_base64
@@ -12,6 +15,7 @@ module SessionsHelper
   def current_user
     token = cookies[:remember_token]
     return nil if token.nil?
+
     @current_user ||= User.find_by(remember_digest: digest(token))
   end
 
@@ -21,9 +25,9 @@ module SessionsHelper
   end
 
   def require_login
-    if current_user.nil?
-      flash[:error] = "You must be logged in before posting"
-      redirect_to login_url
-    end
+    return unless current_user.nil?
+
+    flash[:error] = 'You must be logged in before posting'
+    redirect_to login_url
   end
 end

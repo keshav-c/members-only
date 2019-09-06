@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# Controller for posts
 class PostsController < ApplicationController
-  before_action :require_login, only: [:new, :create]
+  before_action :require_login, only: %i[new create]
 
   def new
     @post = Post.new
@@ -11,7 +14,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path
     else
-      flash[:error] = "an error occured!"
+      flash[:error] = 'an error occured!'
       render 'new'
     end
   end
@@ -20,8 +23,9 @@ class PostsController < ApplicationController
     @posts = Post.includes(:user).all
   end
 
-  private 
-    def post_params
-      params.require(:post).permit(:content)
-    end
+  private
+
+  def post_params
+    params.require(:post).permit(:content)
+  end
 end

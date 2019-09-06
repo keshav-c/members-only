@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Data model for Posts
 class Post < ApplicationRecord
   belongs_to :user
 
