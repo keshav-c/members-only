@@ -2,10 +2,17 @@
 
 # Helper methods for session handling
 module SessionsHelper
-  def log_in(user)
-    token = SecureRandom.urlsafe_base64
+  def log_in(token)
     cookies.permanent[:remember_token] = token
-    user.update_attribute(:remember_digest, digest(token))
+  end
+
+  def log_out
+    cookies.delete(:remember_token)
+    self.current_user = nil
+  end
+
+  def logged_in?
+    !current_user.nil?
   end
 
   def digest(token)
@@ -19,9 +26,8 @@ module SessionsHelper
     @current_user ||= User.find_by(remember_digest: digest(token))
   end
 
-  def log_out
-    cookies.delete(:remember_token)
-    @current_user = nil
+  def current_user=(user)
+    @current_user = user
   end
 
   def require_login

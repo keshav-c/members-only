@@ -9,7 +9,9 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user&.authenticate(params[:session][:password])
-      log_in(user)
+      token = SecureRandom.urlsafe_base64
+      log_in(token)
+      user.update_attribute(:remember_digest, digest(token))
       redirect_to root_url
     else
       flash.now[:danger] = 'Invalid credentials.'

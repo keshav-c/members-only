@@ -1,15 +1,17 @@
 <h1>All posts</h1>
 
 <br>
+<% if logged_in? %>
 <%= link_to "Create new post", new_post_path %>
 /
 <%= link_to "log out", logout_path, method: :delete %>
+<% end %>
 
 <br>
 <ul>
   <% @posts.each do |p| %>
     <li>
-      <% if current_user.nil? %>
+      <% if !logged_in? %>
         <p><strong>Anonymous:</strong> <%= p.content %></p>
       <% else %>
         <p><strong><%= p.user.name %> :</strong> <%= p.content %></p>
