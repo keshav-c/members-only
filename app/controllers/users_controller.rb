@@ -9,7 +9,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in(@user)
+      token = SecureRandom.urlsafe_base64
+      log_in(token)
+      @user.update_attribute(:remember_digest, digest(token))
       redirect_to root_url
     else
       flash.now[:error] = 'Sign up failed!'
