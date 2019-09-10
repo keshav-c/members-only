@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Session management related methods for use in the ApplicationController 
+# Session management related methods for use in the ApplicationController
 module SessionManagementCapable
   def log_in(user)
     token = SecureRandom.urlsafe_base64
