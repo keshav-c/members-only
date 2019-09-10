@@ -4,7 +4,7 @@
       <li><%= link_to "log in", login_path %></li>
       <li><%= link_to "Sign up", new_user_path %></li>
     <% else %>
-      <h3 class="welcome-message">Welcome <%= current_user.name %></h3>
+      <h3>Welcome <%= current_user.name %></h3>
       <li><%= link_to "Sign Out", logout_path, method: :delete %></li>
     <% end %>
       <li><%= link_to "Posts", posts_path %></li>

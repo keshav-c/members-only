@@ -22,7 +22,7 @@ class SessionManagementTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'static_pages/new'
     assert_select 'a[href=?]', logout_path
-    assert_select 'h3', class: 'welcome-message'
+    assert_select 'h3'
     get posts_path
     assert_select 'a[href=?]', logout_path
     assert_select 'a[href=?]', new_post_path
