@@ -4,8 +4,12 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+user_one: 
+  name: balloo dabear
+  email: honey@hive.org
+  password_digest: <%= User.digest('onlyeatsleep') %>
+
+user_two:
+  name: action flaxon
+  email: yahoo@hi.net
+  password_digest: <%= User.digest('password') %>

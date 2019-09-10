@@ -12,9 +12,9 @@
   <% @posts.each do |p| %>
     <li>
       <% if !logged_in? %>
-        <p><strong>Anonymous:</strong> <%= p.content %></p>
+        <p><strong><span class="anon-user">Anonymous:</span></strong> <%= p.content %></p>
       <% else %>
-        <p><strong><%= p.user.name %> :</strong> <%= p.content %></p>
+        <p><strong><span class="known-user"><%= p.user.name %>:</span></strong> <%= p.content %></p>
       <% end%>
     </li>
   <% end %>
