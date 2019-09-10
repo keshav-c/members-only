@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if @user.save
       token = SecureRandom.urlsafe_base64
       log_in(token)
-      @user.update_attribute(:remember_digest, digest(token))
+      @user.update_attribute(:remember_digest, Digest::SHA1.hexdigest(token))
       redirect_to root_url
     else
       flash.now[:error] = 'Sign up failed!'
