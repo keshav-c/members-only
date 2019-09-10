@@ -14,6 +14,10 @@ From theodinproject.com
 
         rails db:migrate
 
+- Run the tests
+
+        rails test
+
 - Run the rails server
 
         rails server
