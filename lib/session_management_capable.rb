@@ -2,7 +2,9 @@
 
 # Session management related methods for use in the ApplicationController 
 module SessionManagementCapable
-  def log_in(token)
+  def log_in(user)
+    token = SecureRandom.urlsafe_base64
+    user.update_attribute(:remember_digest, Digest::SHA1.hexdigest(token))
     cookies.permanent[:remember_token] = token
   end
 
@@ -10,7 +12,7 @@ module SessionManagementCapable
     cookies.delete(:remember_token)
     self.current_user = nil
   end
-  
+
   def require_login
     return unless current_user.nil?
 
