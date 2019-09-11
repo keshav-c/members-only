@@ -19,4 +19,15 @@ module SessionManagementCapable
     flash[:error] = 'You must be logged in before posting'
     redirect_to login_url
   end
+
+  def current_user
+    token = cookies[:remember_token]
+    return nil if token.nil?
+
+    @current_user ||= User.find_by(remember_digest: Digest::SHA1.hexdigest(token))
+  end
+
+  def current_user=(user)
+    @current_user = user
+  end
 end
